@@ -4,7 +4,8 @@
   "description": "It is a legacy project for old reactjs ⚛️ for learn how to work with react legacy projects",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "docker:dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --inline --content-base ."
   },
   "repository": {
     "type": "git",
