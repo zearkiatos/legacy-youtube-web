@@ -15,3 +15,21 @@ install-dependencies:
   cache:
     paths:
       - node_modules/
+
+build-app:
+  stage: build
+  environment: staging
+  cache:
+    paths:
+      - node_modules/
+  dependencies:
+    - install-dependencies
+  script:
+    - echo "Deploy a review app 🛠"
+    - touch .env
+    - echo "NODE_ENV=${NODE_ENV}" > .env
+    - echo "YOUTUBE_API_KEY=${YOUTUBE_API_KEY}" >> .env
+  artifacts:
+    expire_in: 1hr
+    paths:
+      - build
