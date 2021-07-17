@@ -19,14 +19,9 @@ pipeline {
         }
       }
     }
-    stage('Run tests') {
-      steps {
-        sh "docker run ${dockerImage.id} npm run test"
-      }
-    }
     stage('Publish') {
       when {
-        anyOf { branch 'develop'; branch 'master' } 
+        anyOf { branch 'master' } 
       }
       steps {
         script {
