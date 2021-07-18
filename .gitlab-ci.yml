@@ -1,6 +1,7 @@
 image: node:15-alpine
 stages:
   - install
+  - build
   
 install-dependencies:
   stage: install
