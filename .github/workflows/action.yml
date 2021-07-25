@@ -29,6 +29,8 @@ jobs:
         touch .env &&
         echo "NODE_ENV=${NODE_ENV}" > .env &&
         echo "YOUTUBE_API_KEY=${YOUTUBE_API_KEY}" >> .env
+        echo "YOUTUBE_BASE_URL=${YOUTUBE_BASE_URL}" >> .env
       env:
         NODE_ENV: ${{ secrets.NODE_ENV }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        YOUTUBE_BASE_URL: ${{secrets_YOUTUBE_BASE_URL}}
