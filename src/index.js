@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar';
 import config from './config';
 import VideoList from './components/VideoList';
 import YoutubeSearch from 'youtube-api-search';
+import VideoDetail from './components/VideoDetail';
 
 class App extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class App extends Component {
         return (
             <div>
                 <SearchBar />
+                <VideoDetail video={this.state.videos[0]} />
                 <VideoList videos={this.state.videos} />
             </div>
         );
