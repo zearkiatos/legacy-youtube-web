@@ -34,3 +34,5 @@ jobs:
         NODE_ENV: ${{ secrets.NODE_ENV }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         YOUTUBE_BASE_URL: ${{secrets.YOUTUBE_BASE_URL}}
+    - name: Build docker 🐳
+      run: docker build . -t=legacy-youtube-web
