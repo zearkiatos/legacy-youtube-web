@@ -33,4 +33,4 @@ jobs:
       env:
         NODE_ENV: ${{ secrets.NODE_ENV }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        YOUTUBE_BASE_URL: ${{secrets_YOUTUBE_BASE_URL}}
+        YOUTUBE_BASE_URL: ${{secrets.YOUTUBE_BASE_URL}}
