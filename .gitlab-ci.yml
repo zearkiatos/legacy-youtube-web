@@ -1,7 +1,7 @@
 image: node:15-alpine
 stages:
   - install
-  - build-docker
+  - docker
   - build
   
 install-dependencies:
@@ -25,7 +25,7 @@ build-docker:
     CRYPTOGRAPHY_DONT_BUILD_RUST: 1
   services:
   - docker:dind
-  stage: build-docker-image
+  stage: docker
   environment: staging
   cache:
     paths:
@@ -48,7 +48,7 @@ build-app:
       - node_modules/
   dependencies:
     - install-dependencies
-    - build-docker-image
+    - build-docker
   script:
     - echo "Deploy a review app 🛠"
     - touch .env
