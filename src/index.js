@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { debounce } from "lodash";
 import ReactDOM from "react-dom";
 import SearchBar from "./components/SearchBar";
 import config from "./config";
@@ -27,14 +28,31 @@ class App extends Component {
     });
   }
   render() {
+    const videoSearch = debounce((term) => {
+      this.videoSearch(term);
+    }, 300);
     return (
       <div>
-        <SearchBar onSearchTermChange={(term) => this.videoSearch(term)} />
-        <VideoDetail video={this.state.selectedVideo} />
-        <VideoList
-          onVideoSelect={(selectedVideo) => this.setState({ selectedVideo })}
-          videos={this.state.videos}
-        />
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <SearchBar onSearchTermChange={videoSearch} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+              <VideoDetail video={this.state.selectedVideo} />
+            </div>
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+              <VideoList
+                onVideoSelect={(selectedVideo) =>
+                  this.setState({ selectedVideo })
+                }
+                videos={this.state.videos}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

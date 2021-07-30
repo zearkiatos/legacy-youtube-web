@@ -1,6 +1,7 @@
 image: node:15-alpine
 stages:
   - install
+  - build-docker
   - build
   
 install-dependencies:
@@ -18,6 +19,28 @@ install-dependencies:
       - node_modules/
 
 build-app:
+  image: docker:latest
+  variables:
+    DOCKER_DRIVER: overlay
+    CRYPTOGRAPHY_DONT_BUILD_RUST: 1
+  services:
+  - docker:dind
+  stage: build-docker-image
+  environment: staging
+  cache:
+    paths:
+      - node_modules/
+  dependencies:
+    - install-dependencies
+  script:
+    - echo "Build docker 🐳"
+    - docker build . -t=legacy-youtube-web
+  artifacts:
+    expire_in: 1hr
+    paths:
+      - build
+
+build-app:
   stage: build
   environment: staging
   cache:
@@ -25,6 +48,7 @@ build-app:
       - node_modules/
   dependencies:
     - install-dependencies
+    - build-docker-image
   script:
     - echo "Deploy a review app 🛠"
     - touch .env
