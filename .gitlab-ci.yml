@@ -1,6 +1,8 @@
 image: node:15-alpine
 stages:
   - install
+  - docker
+  - build
   
 install-dependencies:
   stage: install
@@ -15,3 +17,45 @@ install-dependencies:
   cache:
     paths:
       - node_modules/
+
+build-docker:
+  image: docker:latest
+  variables:
+    DOCKER_DRIVER: overlay
+    CRYPTOGRAPHY_DONT_BUILD_RUST: 1
+  services:
+  - docker:dind
+  stage: docker
+  environment: staging
+  cache:
+    paths:
+      - node_modules/
+  dependencies:
+    - install-dependencies
+  script:
+    - echo "Build docker 🐳"
+    - docker build . -t=legacy-youtube-web
+  artifacts:
+    expire_in: 1hr
+    paths:
+      - build
+
+build-app:
+  stage: build
+  environment: staging
+  cache:
+    paths:
+      - node_modules/
+  dependencies:
+    - install-dependencies
+    - build-docker
+  script:
+    - echo "Deploy a review app 🛠"
+    - touch .env
+    - echo "NODE_ENV=${NODE_ENV}" > .env
+    - echo "YOUTUBE_API_KEY=${YOUTUBE_API_KEY}" >> .env
+    - echo "YOUTUBE_BASE_URL=${YOUTUBE_BASE_URL}" >> .env
+  artifacts:
+    expire_in: 1hr
+    paths:
+      - build
