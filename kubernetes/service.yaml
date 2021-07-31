@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2021-07-24T12:01:12Z"
+  labels:
+    app: legacy-youtube-web
+  name: legacy-youtube-web
+  namespace: default
+  resourceVersion: "25636"
+  selfLink: /api/v1/namespaces/default/services/legacy-youtube-web
+  uid: d0954fc8-aef3-4ca0-ab91-4ea8807abdce
+spec:
+  clusterIP: 10.100.186.254
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32013
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: legacy-youtube-web
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
