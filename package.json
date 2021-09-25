@@ -1,6 +1,6 @@
 {
   "name": "legacy-youtube-web",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "It is a legacy project for old reactjs ⚛️ for learn how to work with react legacy projects",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,9 @@
   "homepage": "https://github.com/zearkiatos/legacy-youtube-web#readme",
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
+    "express": "^4.17.1",
     "lodash": "^4.17.21",
+    "path": "^0.12.7",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
