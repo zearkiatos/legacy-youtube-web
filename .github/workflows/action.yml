@@ -37,3 +37,5 @@ jobs:
         PORT: ${{secrets.PORT}}
     - name: Build docker 🐳
       run: docker build . -t=legacy-youtube-web:ghb-$GITHUB_RUN_NUMBER
+    - name: Build App
+      run: npm postinstall
