@@ -21,8 +21,8 @@ jobs:
       run: echo "The build number $GITHUB_RUN_NUMBER 🏗"
     - name: Install dependencies
       run: |
-        npm install -g 
         npm install -g webpack@1.12.9
+        npm install
     - name: Create .env
       run: |
         touch .env &&
