@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "docker:dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --inline --content-base .",
-    "postinstall": "makefile build-env && webpack -p"
+    "postinstall": "make build-env && webpack -p"
   },
   "repository": {
     "type": "git",
