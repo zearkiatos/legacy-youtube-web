@@ -7,6 +7,7 @@ WORKDIR /app
 
 COPY . ./
 
+RUN npm install -g webpack@1.12.9
 RUN npm install
 
 EXPOSE 8080

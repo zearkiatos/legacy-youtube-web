@@ -1,12 +1,13 @@
 {
   "name": "legacy-youtube-web",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "It is a legacy project for old reactjs ⚛️ for learn how to work with react legacy projects",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "node server.js",
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "docker:dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --inline --content-base ."
+    "docker:dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --inline --content-base .",
+    "postinstall": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "babel-preset-react": "^6.1.18",
     "dotenv-webpack": "^7.0.3",
     "webpack": "^1.12.9",
+    "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^1.14.0"
   }
 }

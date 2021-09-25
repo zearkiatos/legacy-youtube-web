@@ -18,21 +18,22 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Generate build number
-      uses: einaregilsson/build-number@v3
-      with:
-        token: ${{ secrets.github_token }}
-        prefix: client
+      run: echo "The build number $GITHUB_RUN_NUMBER 🏗"
     - name: Install dependencies
-      run: npm install
+      run: |
+        npm install -g webpack@1.12.9
+        npm install
     - name: Create .env
       run: |
         touch .env &&
         echo "NODE_ENV=${NODE_ENV}" > .env &&
         echo "YOUTUBE_API_KEY=${YOUTUBE_API_KEY}" >> .env
         echo "YOUTUBE_BASE_URL=${YOUTUBE_BASE_URL}" >> .env
+        echo "YOUTUBE_BASE_URL=${PORT}" >> .env
       env:
         NODE_ENV: ${{ secrets.NODE_ENV }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         YOUTUBE_BASE_URL: ${{secrets.YOUTUBE_BASE_URL}}
+        PORT: ${{secrets.PORT}}
     - name: Build docker 🐳
-      run: docker build . -t=legacy-youtube-web
+      run: docker build . -t=legacy-youtube-web:ghb-$GITHUB_RUN_NUMBER

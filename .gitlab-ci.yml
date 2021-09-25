@@ -9,6 +9,7 @@ install-dependencies:
   script:
     - apk update && apk add python make g++
     - apk add --update nodejs npm
+    - npm install -g webpack@1.12.9
     - npm install
   artifacts:
     expire_in: 1hr
@@ -34,7 +35,7 @@ build-docker:
     - install-dependencies
   script:
     - echo "Build docker 🐳"
-    - docker build . -t=legacy-youtube-web
+    - docker build . -t=legacy-youtube-web:glb-${CI_PIPELINE_IID}
   artifacts:
     expire_in: 1hr
     paths:
@@ -55,6 +56,7 @@ build-app:
     - echo "NODE_ENV=${NODE_ENV}" > .env
     - echo "YOUTUBE_API_KEY=${YOUTUBE_API_KEY}" >> .env
     - echo "YOUTUBE_BASE_URL=${YOUTUBE_BASE_URL}" >> .env
+    - echo "PORT=${PORT}" >> .env
   artifacts:
     expire_in: 1hr
     paths:
